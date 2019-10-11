@@ -1,23 +1,37 @@
 import React, { useEffect } from 'react';
-import * as actionCreators from '../state/actionCreators';
-import Smurf from './Smurf';
 import { connect } from 'react-redux';
 
-export const SmurfsList = (props) => {
+import Smurf from './Smurf';
 
-    useEffect(() => {
-        props.getChars();
-    })
-    return (
-        <div>
-            {
-                props.state.smurfs.map(character => <Smurf key={character.id} props={character}/>)
-            }
-        </div>
-    )
+import { getSmurf } from '../state/actionCreators';
+
+const SmurfList = props => {
+  const { getSmurf, smurfs, isFetching, error } = props;
+
+  useEffect(()=> {
+    getSmurf()
+  },[getSmurf])
+
+  if(isFetching) {
+    return <h1>Smurfs loading</h1>
+  }
+
+  return (
+    <div>
+      {
+        smurfs.map(character => <Smurf key={character.id} character={character} /> )
+      }
+    </div>
+  )
 }
 
-export default connect(
-    state => state, 
-    actionCreators, 
-  )(SmurfsList);
+const mapStateToProps = state => {
+  console.log('initial', state)
+  return {
+    smurfs: state.smurfs,
+    isFetching: state.ifFetching,
+    error: state.error    
+  }
+}
+
+export default connect(mapStateToProps, { getSmurf })(SmurfList)

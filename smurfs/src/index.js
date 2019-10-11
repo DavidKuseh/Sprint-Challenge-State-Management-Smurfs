@@ -1,10 +1,3 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
-// import "./index.css";
-// import App from "./components/App";
-
-// ReactDOM.render(<App />, document.getElementById("root"));
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -16,7 +9,7 @@ import thunk from 'redux-thunk';
 
 
 const mainReducer = combineReducers({
-	state: reducer.smurfsReducer
+    state: reducer.smurfsReducer,
 });
 
 export const store = createStore(mainReducer,
