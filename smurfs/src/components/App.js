@@ -1,8 +1,7 @@
 import React from "react";
-import "./App.css";
 import SmurfsList from './SmurfsList';
 import SmurfForm from "./SmurfForm";
-
+import "./App.css";
 
 function App () {
     return (

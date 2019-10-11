@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import { addSmurf } from '../state/actionCreators';
 
-export const SmurfForm = props => {
-  const { addSmurf, smurfs, isPosting, error } = props;
+ const SmurfForm = props => {
+  const { addSmurf, isPosting} = props;
   const [smurf, setSmurf] = useState({name:'', age:'', height:''});
 
   const handleChange = event => {
@@ -24,19 +24,21 @@ export const SmurfForm = props => {
   return (
     <form onSubmit={handleSubmit} >
       <h2>Add New Smurf Here</h2>
-      <label>Smurf Name</label>
+      <label>Smurf Name:</label>
       <input 
         type='text'
         name='name'
         value={smurf.name}
         onChange={handleChange}
       />
+      <label>Smurf Age:</label>
       <input 
         type='number'
         name='age'
         value={smurf.age}
         onChange={handleChange}
       />
+      <label>Smurf Height:</label>
       <input 
         type='text'
         name='height'

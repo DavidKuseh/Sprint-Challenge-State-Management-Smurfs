@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
-import Smurf from './Smurf';
-
 import { getSmurf } from '../state/actionCreators';
+import Smurf from './Smurf';
+import styled from 'styled-components';
+
+const CharacterList = styled.div`
+  display: flex;
+`
 
 const SmurfList = props => {
-  const { getSmurf, smurfs, isFetching, error } = props;
-
+  const { getSmurf, smurfs, isFetching } = props;
   useEffect(()=> {
     getSmurf()
   },[getSmurf])
@@ -17,12 +19,13 @@ const SmurfList = props => {
   }
 
   return (
-    <div>
+    <CharacterList>
       {
-        smurfs.map(character => <Smurf key={character.id} character={character} /> )
+        smurfs.map(character => <Smurf keys={character.id} character={character} />)
       }
-    </div>
+    </CharacterList>
   )
+
 }
 
 const mapStateToProps = state => {
